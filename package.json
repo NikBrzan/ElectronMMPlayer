@@ -1,0 +1,22 @@
+{
+  "name": "electronmmplayer",
+  "version": "1.0.0",
+  "description": "Multimedia player",
+  "keywords": [
+    "Player"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "EMMPlayer"
+  },
+  "license": "ISC",
+  "author": "Nik Brzan",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "electron": "^36.3.1"
+  }
+}
