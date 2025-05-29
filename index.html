@@ -22,31 +22,42 @@
         </menu>
         <div class="container">
             <div class="sidePanel">
-                <div class="playlist"></div>
-            </div>
-            <div class="mainPlayer">
-                <span id="currentPlaying">Ni datoteke</span>
-                <br>
-                <video width="320" height="240" autoplay>
-                    <source src="./assets/demo/demo_video1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="controlls">
-                <div class="sliders">
-                    <div class="slidecontainer">
-                        <span id="currentPlayingLength">--:--</span>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <div class="playlist">
+                    <div class="playlistItem">
+                        <img src="./assets/buttons/end.png" class="sideImg" />
+                        <div class="info">
+                            <p class="name">Ime</p>
+                            <p class="duration">2:13</p>
+                        </div>
+
                     </div>
                 </div>
-                <div class="buttons">
-                    <img id="prev" src="./assets/buttons/prev.png">
-                    <img id="pause" src="./assets/buttons/pause.png">
-                    <img id="play" src="./assets/buttons/play.png">
-                    <img id="next" src="./assets/buttons/next.png">
-                    <img id="end" src="./assets/buttons/end.png">
-                    <img id="repeat" src="./assets/buttons/repeat.png">
-                    <img id="shuffle" class="selectedBtn" src="./assets/buttons/shuffle.png">
+            </div>
+            <div class="playerContainer">
+                <div class="mainPlayer">
+                    <span id="currentPlaying">Ni datoteke</span>
+                    <br>
+                    <video width="320" height="240" autoplay>
+                        <source src="./assets/demo/demo_video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="controlls">
+                    <div class="sliders">
+                        <div class="slidecontainer">
+                            <span id="currentPlayingLength">--:--</span>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <img id="prev" src="./assets/buttons/prev.png">
+                        <img id="pause" src="./assets/buttons/pause.png">
+                        <img id="play" src="./assets/buttons/play.png">
+                        <img id="next" src="./assets/buttons/next.png">
+                        <img id="end" src="./assets/buttons/end.png">
+                        <img id="repeat" src="./assets/buttons/repeat.png">
+                        <img id="shuffle" src="./assets/buttons/shuffle.png">
+                    </div>
                 </div>
             </div>
 

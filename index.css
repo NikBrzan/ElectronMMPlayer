@@ -31,6 +31,8 @@
     display: flex;
     justify-content: center;  /* horizontalno centriranje */
     align-items: center;      /* vertikalno centriranje */
+    border: #0c0c0c solid 2px;
+    margin-top: 15px;
 }
 
 .buttons > img {
@@ -55,3 +57,38 @@
 #currentPlayingLength {
     margin-right: 8px;
 }
+
+.sideImg {
+    width: 80px;
+    height: fit-content;
+}
+
+.playlistItem {
+    display: flex;
+    border: #0c0c0c solid 2px;
+    margin-bottom: 20px;
+    padding-right: 15px;
+    margin-right: 20px;
+}
+
+.info {
+    
+}
+
+.container {
+    display: flex;
+}
+
+.playerContainer {
+    width: 90%;
+}
+
+.mainPlayer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+}
+

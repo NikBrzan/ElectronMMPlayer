@@ -1,5 +1,7 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
+const { next, prev, state } = require('./playlist.js');
+
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -20,3 +22,17 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
+
+ipcMain.on('prev', (event) => {
+  event.sender.send("UpdatePlaying", prev())
+});
+
+ipcMain.on('next', (event) => {
+  event.sender.send("UpdatePlaying", next())
+});
+
+ipcMain.on('toggle-shuffle', (event) => {
+  state.isShuffle = !state.isShuffle;
+
+});
+
