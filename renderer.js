@@ -61,6 +61,35 @@ window.addEventListener('DOMContentLoaded', () => {
       container.innerHTML += formatHtml(item);
     }
   });
+
+  window.player.onUpdateTheme((data) => {
+    setTheme(data.theme);
+  })
+
+  document.querySelector('.menu').addEventListener('click', (e) => {
+
+  if (e.target.tagName.toLowerCase() === 'li') {
+    const clickedText = e.target.textContent.trim();
+
+    switch (clickedText) {
+      case 'Datoteke':
+        break;
+      case 'List':
+        break;
+      case 'Nastavitve':
+        player.openSettingsWindow();
+        break;
+      case 'Debug':
+        console.log('Clicked Debug');
+        break;
+      case 'Pomoc':
+        break;
+      default:
+        console.log('Clicked:', clickedText);
+    }
+  }
+});
+
 });
 
 
@@ -72,4 +101,9 @@ function formatHtml(data) {
               <p class="duration">${data.duration}</p>
             </div>
           </div>`;
+}
+
+function setTheme(theme) {
+  const themeLink = document.getElementById('theme-link');
+  themeLink.href = theme === 'dark' ? 'dark.css' : 'light.css';
 }

@@ -48,3 +48,31 @@ ipcMain.on("item-index", (event, data) => {
   event.sender.send("UpdatePlaying", getItemPlaylist(data));
   event.sender.send("UpdateCurrent", getCurrentI());
 });
+
+ipcMain.on("switch-theme", (event, data) => {
+  state.theme = data.theme;
+  const allWindows = BrowserWindow.getAllWindows();
+  allWindows.forEach(w => {
+    w.webContents.send("UpdateTheme", { theme: data.theme });
+  });
+});
+
+ipcMain.on('open-settings-window', (event) => {
+    const settingsWin = new BrowserWindow({
+    width: 600,
+    height: 400,
+    minHeight: 500,
+    minWidth: 350,
+    title: "Settings",
+    webPreferences: {
+      preload: path.join(__dirname, 'preloadSettings.js')
+    }
+  })
+
+  settingsWin.loadFile('settings.html')
+  
+});
+
+ipcMain.on("get-theme", (event) => {
+  event.sender.send("Theme", { theme: state.theme });
+});

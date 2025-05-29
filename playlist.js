@@ -13,6 +13,7 @@ let currentI = 0;
 const state = {
     isRepeat: true,
     isShuffle: false,
+    theme: "light"
 };
 
 function nextI() {

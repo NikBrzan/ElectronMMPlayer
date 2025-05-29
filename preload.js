@@ -9,7 +9,10 @@ contextBridge.exposeInMainWorld('player', {
     getPlaylist: () => ipcRenderer.send("getPlaylist"),
     onUpdatePlaylist: (callback) => ipcRenderer.on('UpdatePlaylist', (event, data) => callback(data)),
     onUpdateCurrent: (callback) => ipcRenderer.on('UpdateCurrent', (event, data) => callback(data)),
-    getItemIndex: (data) => ipcRenderer.send("item-index", data)
+    getItemIndex: (data) => ipcRenderer.send("item-index", data),
+    openSettingsWindow: () => ipcRenderer.send("open-settings-window"),
+    switchTheme: (data) => ipcRenderer.send("switch-theme", data),
+    onUpdateTheme: (callback) => ipcRenderer.on('UpdateTheme', (event, data) => callback(data)),
 
 })
 
