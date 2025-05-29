@@ -58,11 +58,26 @@ function prev() {
 }
 
 function getPlaylistInfo() {
-    return playlist.map(item => ({
+    return playlist.map((item, i) => ({
         title: item.title,
         duration: item.duration,
-        picture: item.picture
+        picture: item.picture,
+        index: i
     }));
+}
+
+function getItemPlaylist(i) {
+    if (playlist.length <= i) throw 404;
+    currentI = i;
+    return {
+        src: playlist[i].path
+    };
+}
+
+function getCurrentI() {
+    return {
+        index: currentI
+    };
 }
 
 
@@ -70,5 +85,7 @@ module.exports = {
     next,
     state,
     prev,
-    getPlaylistInfo
+    getPlaylistInfo,
+    getItemPlaylist,
+    getCurrentI
 };

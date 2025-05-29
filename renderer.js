@@ -33,10 +33,25 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  document.getElementById('playlist').addEventListener('click', (e) => {
+    const itemDiv = e.target.closest('.playlistItem');
+    if (!itemDiv) return;
+    const id = itemDiv.id;
+    player.getItemIndex(id);
+  });
+
   window.player.onUpdatePlaying((data) => {
     video.src = data.src;
     video.play();
   });
+
+  window.player.onUpdateCurrent((data) => {
+    const old = document.querySelector('.playlistItem.current');
+    if (old) old.classList.remove('current');
+
+    const newItem = document.getElementById(data.index);
+    if (newItem) newItem.classList.add('current');
+  })
 
   window.player.onUpdatePlaylist((data) => {
     console.log(data);
@@ -50,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 function formatHtml(data) {
-  return `<div class="playlistItem">
+  return `<div class="playlistItem" id="${data.index}">
             <img src="${data.picture}" class="sideImg" />
             <div class="info">
               <p class="name">${data.title}</p>

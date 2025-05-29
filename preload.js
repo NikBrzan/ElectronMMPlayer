@@ -8,6 +8,8 @@ contextBridge.exposeInMainWorld('player', {
     onUpdatePlaying: (callback) => ipcRenderer.on('UpdatePlaying', (event, data) => callback(data)),
     getPlaylist: () => ipcRenderer.send("getPlaylist"),
     onUpdatePlaylist: (callback) => ipcRenderer.on('UpdatePlaylist', (event, data) => callback(data)),
+    onUpdateCurrent: (callback) => ipcRenderer.on('UpdateCurrent', (event, data) => callback(data)),
+    getItemIndex: (data) => ipcRenderer.send("item-index", data)
 
 })
 
