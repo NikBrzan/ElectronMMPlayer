@@ -1,10 +1,13 @@
 const { FileM } = require("./media.js")
 
-playlist = [
-    './assets/demo/demo_video1.mp4',
-    './assets/demo/demo_video2.mp4',
-    './assets/demo/demo_video3.mp4',
+const playlist = [
+    new FileM({ title: "ime je ime wad w adwdw dwad wad asd", path: './assets/demo/demo_video1.mp4', duration: 12, picture: 'assets/buttons/end.png' }),
+    new FileM({ title: "ime2", path: './assets/demo/demo_video2.mp4', duration: 12, picture: 'assets/buttons/pause.png' }),
+    new FileM({ title: "ime3", path: './assets/demo/demo_video3.mp4', duration: 12, picture: 'assets/buttons/menu.png' }),
 ];
+
+
+
 
 let currentI = 0;
 const state = {
@@ -27,7 +30,9 @@ function nextI() {
 
 function next() {
     currentI = nextI();
-    return playlist[currentI];
+    return {
+        src: playlist[currentI].path,
+    };
 }
 
 function prevI() {
@@ -47,11 +52,23 @@ function prevI() {
 
 function prev() {
     currentI = prevI();
-    return playlist[currentI];
+    return {
+        src: playlist[currentI].path,
+    };
 }
+
+function getPlaylistInfo() {
+    return playlist.map(item => ({
+        title: item.title,
+        duration: item.duration,
+        picture: item.picture
+    }));
+}
+
 
 module.exports = {
     next,
     state,
-    prev
+    prev,
+    getPlaylistInfo
 };

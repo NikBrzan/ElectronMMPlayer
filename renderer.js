@@ -1,6 +1,9 @@
 
 window.addEventListener('DOMContentLoaded', () => {
-   const video = document.querySelector('video');
+  const video = document.querySelector('video');
+
+  player.getPlaylist();
+
   const buttons = {
     prev: () => {
       player.prev();
@@ -30,8 +33,28 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-    window.player.onUpdatePlaying((newSrc) => {
-    video.src = newSrc;
+  window.player.onUpdatePlaying((data) => {
+    video.src = data.src;
     video.play();
-    });
+  });
+
+  window.player.onUpdatePlaylist((data) => {
+    console.log(data);
+    const container = document.getElementById('playlist');
+    container.innerHTML = "";
+    for (const item of data) {
+      container.innerHTML += formatHtml(item);
+    }
+  });
 });
+
+
+function formatHtml(data) {
+  return `<div class="playlistItem">
+            <img src="${data.picture}" class="sideImg" />
+            <div class="info">
+              <p class="name">${data.title}</p>
+              <p class="duration">${data.duration}</p>
+            </div>
+          </div>`;
+}

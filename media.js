@@ -1,25 +1,26 @@
 class FileM {
     static Types = ['Video', 'Audio'];
 
-    constructor() {
-        this.title = '';
-        this.path = '';
-        this.type = 'Video';
-        this.picture = '';
-        this.size = 0;
-        this.duration = 0; // in seconds
-        this.playing = false;
-    }
-    /*constructor(title, path) {
+    constructor({
+        title = '',
+        path = '',
+        type = 'Video',
+        picture = '',
+        size = 0,
+        duration = 0,
+        playing = false
+    } = {}) {
         this.title = title;
         this.path = path;
-        this.type = 'Video';
-        this.picture = '';
-        this.size = 0;
-        this.duration = 0;
-        this.playing = false;
-    }*/
+        this.type = FileM.Types.includes(type) ? type : 'Video';
+        this.picture = picture;
+        this.size = size;
+        this.duration = duration;
+        this.playing = playing;
+    }
 }
+
+
 module.exports = {
     FileM
 };

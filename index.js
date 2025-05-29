@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
-const { next, prev, state } = require('./playlist.js');
+const { next, prev, state, getPlaylistInfo } = require('./playlist.js');
 
 
 const createWindow = () => {
@@ -36,3 +36,6 @@ ipcMain.on('toggle-shuffle', (event) => {
 
 });
 
+ipcMain.on('getPlaylist', (event) => {
+  event.sender.send("UpdatePlaylist", getPlaylistInfo());
+});
