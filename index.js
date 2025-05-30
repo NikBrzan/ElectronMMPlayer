@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
-const { next, prev, state, getPlaylistInfo, getItemPlaylist, getCurrentI } = require('./playlist.js');
+const { next, prev, state, getPlaylistInfo, getItemPlaylist, getCurrentI, save, load } = require('./playlist.js');
 
+const SAVE_PATH = "./saves/playlist.json";
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -18,11 +19,16 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
+  load(SAVE_PATH);
   createWindow()
 })
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
+  if (process.platform !== 'darwin') {
+    save(SAVE_PATH);
+    app.quit();
+
+  }
 })
 
 ipcMain.on('prev', (event) => {
@@ -58,7 +64,7 @@ ipcMain.on("switch-theme", (event, data) => {
 });
 
 ipcMain.on('open-settings-window', (event) => {
-    const settingsWin = new BrowserWindow({
+  const settingsWin = new BrowserWindow({
     width: 600,
     height: 400,
     minHeight: 500,
@@ -70,7 +76,7 @@ ipcMain.on('open-settings-window', (event) => {
   })
 
   settingsWin.loadFile('settings.html')
-  
+
 });
 
 ipcMain.on("get-theme", (event) => {

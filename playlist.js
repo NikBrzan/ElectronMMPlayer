@@ -1,11 +1,31 @@
 const { FileM } = require("./media.js")
+var fs = require('fs');
 
-const playlist = [
-    new FileM({ title: "ime je ime wad w adwdw dwad wad asd", path: './assets/demo/demo_video1.mp4', duration: 12, picture: 'assets/buttons/end.png' }),
-    new FileM({ title: "ime2", path: './assets/demo/demo_video2.mp4', duration: 12, picture: 'assets/buttons/pause.png' }),
-    new FileM({ title: "ime3", path: './assets/demo/demo_video3.mp4', duration: 12, picture: 'assets/buttons/menu.png' }),
+let playlist = [
+    /*new FileM({ title: "ime je ime wad w adwdw dwad wad asd", path: './assets/demo/demo_video1.mp4', duration: 12, picture: 'assets/buttons/end.png', size: 12 }),
+    new FileM({ title: "ime2", path: './assets/demo/demo_video2.mp4', duration: 12, picture: 'assets/buttons/pause.png', size: 12 }),
+    new FileM({ title: "ime3", path: './assets/demo/demo_video3.mp4', duration: 12, picture: 'assets/buttons/menu.png', size: 12 }),
+    new FileM({ title: "zvok", path: './assets/demo/test.mp3', duration: 12, picture: 'assets/buttons/play.png', type: 'Audio', size: 12 }),*/
 ];
 
+function save(path) {
+    fs.writeFile(path, JSON.stringify(playlist), function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+
+
+function load(path) {
+    try {
+        const parsedData = JSON.parse(fs.readFileSync(path, 'utf-8'));
+        playlist = parsedData.map(item => new FileM(item));
+
+    } catch (err) {
+        console.error("Error when loading that playlist:", err);
+    }
+}
 
 
 
@@ -88,5 +108,7 @@ module.exports = {
     prev,
     getPlaylistInfo,
     getItemPlaylist,
-    getCurrentI
+    getCurrentI,
+    save,
+    load
 };
