@@ -32,6 +32,7 @@ body {
 .playlistItem {
     background-color: #1a1a1a;
     border-color: #2ecc71;
+    box-shadow: 0 0 6px #ffffff;
 }
 
 
@@ -54,4 +55,10 @@ body {
 ::-webkit-scrollbar-thumb {
     background: #2ecc71;
     border-radius: 5px;
+}
+
+.menu li:hover {
+  background: #000000;
+  color: #2ecc71;
+  box-shadow: 0 0 5px #000000;
 }

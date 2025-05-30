@@ -8,7 +8,7 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 1600,
     height: 900,
-    minHeight: 600,
+    minHeight: 820,
     minWidth: 900,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
@@ -67,7 +67,7 @@ ipcMain.on('open-settings-window', (event) => {
   const settingsWin = new BrowserWindow({
     width: 600,
     height: 400,
-    minHeight: 500,
+    minHeight: 300,
     minWidth: 350,
     title: "Settings",
     webPreferences: {

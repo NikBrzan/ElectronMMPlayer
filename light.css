@@ -1,3 +1,28 @@
 body {
     background-color: rgb(249, 249, 249);
 }
+
+.slider {
+    background: #d3d3d3;
+}
+
+.slider::-webkit-slider-thumb {
+    background: #006ff7;
+}
+
+.selectedBtn {
+    border-color: #006ff7;
+}
+
+.playlistItem {
+      border: #0c0c0c solid 2px;
+}
+
+.menu {
+      background: #0d0d0d;
+}
+
+.menu li:hover {
+  background: #2ecc71;
+  color: #111;
+}
