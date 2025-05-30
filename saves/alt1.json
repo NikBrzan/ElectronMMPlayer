@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Grove Street Classics Vol. 1",
+        "path": "./assets/demo/demo_video2.mp4",
+        "type": "Video",
+        "picture": "assets/buttons/play.png",
+        "size": 23,
+        "duration": 42,
+        "playing": false
+    },
+    {
+        "title": "Midnight Hustle Vision",
+        "path": "./assets/demo/test.mp3",
+        "type": "Audio",
+        "picture": "assets/buttons/pause.png",
+        "size": 9,
+        "duration": 33,
+        "playing": false
+    }
+]

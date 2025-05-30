@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('node:path')
 const { next, prev, state, getPlaylistInfo, getItemPlaylist, getCurrentI, save, load } = require('./playlist.js');
 
@@ -82,3 +82,24 @@ ipcMain.on('open-settings-window', (event) => {
 ipcMain.on("get-theme", (event) => {
   event.sender.send("Theme", { theme: state.theme });
 });
+
+ipcMain.on('open-load-dialog', async (event) => {
+  try {
+    const result = await dialog.showOpenDialog({
+      properties: ['openFile'],
+      filters: [
+        { name: 'Data', extensions: ['json'] },
+      ]
+    })
+
+    if (!result.canceled) {
+      load(result.filePaths[0])
+      event.sender.send("UpdatePlaylist", getPlaylistInfo());
+    }
+
+  } catch (err) {
+    console.error("Error with dialog: ", err);
+  }
+});
+
+
