@@ -30,10 +30,11 @@ function load(path) {
 
 
 let currentI = 0;
+
 const state = {
     isRepeat: true,
     isShuffle: false,
-    theme: "light"
+    theme: "dark"
 };
 
 function nextI() {

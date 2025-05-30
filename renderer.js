@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('video');
   const slider = document.querySelector("#myRange");
   player.getPlaylist();
-
+  player.getTheme();
   const buttons = {
     prev: () => {
       player.prev();
@@ -103,6 +103,10 @@ window.addEventListener('DOMContentLoaded', () => {
   video.addEventListener('loadedmetadata', () => {
     slider.max = video.duration;
   });
+
+  window.player.onTheme((data) => {
+        setTheme(data.theme);
+    });
 });
 
 

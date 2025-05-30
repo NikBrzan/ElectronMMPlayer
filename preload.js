@@ -14,6 +14,7 @@ contextBridge.exposeInMainWorld('player', {
     switchTheme: (data) => ipcRenderer.send('switch-theme', data),
     onUpdateTheme: (callback) => ipcRenderer.on('UpdateTheme', (event, data) => callback(data)),
     openLoadDialog: () => ipcRenderer.send('open-load-dialog'),
-
+    getTheme: () => ipcRenderer.send("get-theme"),
+    onTheme: (callback) => ipcRenderer.on('Theme', (event, data) => callback(data)),
 })
 

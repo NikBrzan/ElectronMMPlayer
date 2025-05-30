@@ -75,7 +75,9 @@ ipcMain.on('open-settings-window', (event) => {
     }
   })
 
-  settingsWin.loadFile('settings.html')
+  settingsWin.loadFile('settings.html');
+  settingsWin.send("Theme", { theme: state.theme });
+
 
 });
 

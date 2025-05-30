@@ -18,6 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 radios[radio].checked = true;
             }
         }
+        setTheme(data.theme);
     });
 });
 
