@@ -51,6 +51,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const newItem = document.getElementById(data.index);
     if (newItem) newItem.classList.add('current');
+
+    const titlePlaying = document.querySelector('#currentPlaying');
+    titlePlaying.innerHTML = data.title;
   })
 
   window.player.onUpdatePlaylist((data) => {
@@ -108,3 +111,4 @@ function setTheme(theme) {
   const themeLink = document.getElementById('theme-link');
   themeLink.href = theme === 'dark' ? 'dark.css' : 'light.css';
 }
+

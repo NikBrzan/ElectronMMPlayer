@@ -97,7 +97,8 @@ function getItemPlaylist(i) {
 
 function getCurrentI() {
     return {
-        index: currentI
+        index: currentI,
+        title: playlist[currentI].title
     };
 }
 
