@@ -1,7 +1,7 @@
 
 window.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('video');
-
+  const slider = document.querySelector("#myRange");
   player.getPlaylist();
 
   const buttons = {
@@ -94,6 +94,15 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const timeDisplay = document.querySelector("#currentPlayingLength");
+  video.ontimeupdate = (event) => {
+    timeDisplay.innerHTML = video.currentTime.toFixed(1);
+    slider.value = video.currentTime;
+  };
+
+  video.addEventListener('loadedmetadata', () => {
+    slider.max = video.duration;
+  });
 });
 
 
