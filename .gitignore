@@ -136,4 +136,5 @@ dist
 .pnp.*
 
 
-/saves/playlist.json
+
+saves/playlist.json
