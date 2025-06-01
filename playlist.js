@@ -103,7 +103,24 @@ function getCurrentI() {
     };
 }
 
+function removeItemAtIndex(index) {
+    if (index < 0 || playlist.length <= index) return;
+    
+    if (index === currentI) {
+        currentI = nextI();
+    } else if (index < currentI) {
+        currentI -= 1;
+    }
 
+    playlist.splice(index, 1);
+
+    if (playlist.length === 0) {
+        currentI = 0;
+    } else {
+        currentI = currentI % playlist.length;
+    }
+    
+}
 module.exports = {
     next,
     state,
@@ -112,5 +129,6 @@ module.exports = {
     getItemPlaylist,
     getCurrentI,
     save,
-    load
+    load,
+    removeItemAtIndex
 };

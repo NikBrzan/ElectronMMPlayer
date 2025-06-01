@@ -62,3 +62,25 @@ body {
   color: #2ecc71;
   box-shadow: 0 0 5px #000000;
 }
+
+.commands-list {
+    background: #181f1b;
+    border: 2px solid #2ecc71;
+    border-radius: 10px;
+    padding: 16px 12px;
+    margin-bottom: 18px;
+    color: #eaffea;
+    box-shadow: 0 2px 8px #222;
+}
+.commands-list h3 {
+    color: #2ecc71;
+    margin-top: 0;
+}
+.commands-list ul {
+    padding-left: 18px;
+}
+.commands-list li {
+    list-style: none;
+    margin-bottom: 6px;
+    font-size: 1.08em;
+}

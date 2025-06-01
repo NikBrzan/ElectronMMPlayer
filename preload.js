@@ -19,6 +19,6 @@ contextBridge.exposeInMainWorld('player', {
     onTheme: (callback) => ipcRenderer.on('Theme', (event, data) => callback(data)),
     startRecord: () => ipcRenderer.send('start-speach'),
     onTranscribe: (callback) => ipcRenderer.on('transcript', (event, data) => callback(data)),
-    
+    removeAtIndex: (index) => ipcRenderer.send('remove-at-index', index),
 })
 

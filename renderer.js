@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const slider = document.querySelector("#myRange");
   player.getPlaylist();
   player.getTheme();
+  let removal = false;
+
   const buttons = {
     prev: () => {
       player.prev();
@@ -111,7 +113,40 @@ window.addEventListener('DOMContentLoaded', () => {
         setTheme(data.theme);
     });
 
-  window.player.onTranscribe((data) => {
+  window.player.onTranscribe(async (data) => {
+
+    if (removal) {
+    const numberWords = {
+      "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4,
+      "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+      "ten": 10
+    };
+    let index = null;
+
+    const match = data.match(/\d+/);
+    if (match) {
+      index = parseInt(match[0], 10);
+    } else if (data.includes("cancel")) {
+      removal = false;
+      return;
+    } else {
+      const wordMatch = Object.keys(numberWords).find(word => data.toLowerCase().includes(word));
+      if (wordMatch) index = numberWords[wordMatch];
+    }
+
+    if (index !== null) {
+      window.player.removeAtIndex(index);
+      speak(`Removed item at index ${index}`);
+    } 
+    
+    else {
+      speak("Please say the index number to remove.");
+      setTimeout(() => player.startRecord(), 3000);
+      return;
+    }
+    removal = false;
+    return;
+  }
       
     if (data.includes("pause")) {
       video.pause();
@@ -123,7 +158,13 @@ window.addEventListener('DOMContentLoaded', () => {
       speak("Next item");
     } else if (data.includes("previous")) {
       speak("Previous item");
-    } else {
+    } else if (data.includes("remove")) {
+      speak("Tell me the index of the item you wish to remove");
+      await new Promise(res => setTimeout(res, 3000));
+      player.startRecord();
+      removal = true;
+    } 
+    else {
       speak("Command not recognized");
     }
 

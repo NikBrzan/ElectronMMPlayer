@@ -135,3 +135,7 @@
 .current {
   border: #2ecc71, solid, 3px;
 }
+
+.currentSelected {
+  border: #ff2a00, solid, 3px;
+}
