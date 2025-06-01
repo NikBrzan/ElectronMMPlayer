@@ -20,5 +20,7 @@ contextBridge.exposeInMainWorld('player', {
     startRecord: () => ipcRenderer.send('start-speach'),
     onTranscribe: (callback) => ipcRenderer.on('transcript', (event, data) => callback(data)),
     removeAtIndex: (index) => ipcRenderer.send('remove-at-index', index),
+    getSA: () => ipcRenderer.send('get-sox-available'),
+    onSA: (callback) => ipcRenderer.on('sox', (event, data) => callback(data)),
 })
 

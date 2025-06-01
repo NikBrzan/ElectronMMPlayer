@@ -152,4 +152,10 @@ ipcMain.on('remove-at-index', (event, index) => {
   event.sender.send('UpdateCurrent', getCurrentI());
 });
 
-
+ipcMain.on('get-sox-available', (event) => {
+  exec('sox --version', (error) => {
+    const available = !error;
+    console.log('Sox available:', available);
+    event.sender.send('sox', { available });
+  });
+});

@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const slider = document.querySelector("#myRange");
   player.getPlaylist();
   player.getTheme();
+  player.getSA();
   let removal = false;
 
   const buttons = {
@@ -111,6 +112,17 @@ window.addEventListener('DOMContentLoaded', () => {
   window.player.onTheme((data) => {
         setTheme(data.theme);
     });
+
+  window.player.onSA((data) => {
+    if (!data.available){
+      // rm .commands-list
+      const commandsList = document.querySelector('.commands-list');
+      if (commandsList) {
+        commandsList.remove();
+      }
+    }
+    console.log(data);
+  })
 
   window.player.onTranscribe(async (data) => {
 
