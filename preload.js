@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
+
 contextBridge.exposeInMainWorld('player', {
     next: () => ipcRenderer.send('next'),
     prev: () => ipcRenderer.send('prev'),
@@ -16,5 +17,8 @@ contextBridge.exposeInMainWorld('player', {
     openLoadDialog: () => ipcRenderer.send('open-load-dialog'),
     getTheme: () => ipcRenderer.send("get-theme"),
     onTheme: (callback) => ipcRenderer.on('Theme', (event, data) => callback(data)),
+    startRecord: () => ipcRenderer.send('start-speach'),
+    onTranscribe: (callback) => ipcRenderer.on('transcript', (event, data) => callback(data)),
+    
 })
 

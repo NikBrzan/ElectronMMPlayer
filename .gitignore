@@ -138,3 +138,6 @@ dist
 
 
 saves/playlist.json
+additional/
+speech.wav
+speech.txt

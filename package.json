@@ -33,7 +33,11 @@
     "electron-builder": "^26.0.12"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "dotenv": "^16.5.0",
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-webrtc": "^0.3.0",
+    "microsoft-cognitiveservices-speech-sdk": "^1.44.0",
+    "node-record-lpcm16": "^1.0.1"
   },
   "build": {
     "appId": "com.gangster3000.app",

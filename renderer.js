@@ -86,6 +86,9 @@ window.addEventListener('DOMContentLoaded', () => {
         case 'Debug':
           console.log('Clicked Debug');
           break;
+        case "Zvočni ukazi":
+          player.startRecord();
+          break;
         case 'Pomoc':
           break;
         default:
@@ -107,6 +110,24 @@ window.addEventListener('DOMContentLoaded', () => {
   window.player.onTheme((data) => {
         setTheme(data.theme);
     });
+
+  window.player.onTranscribe((data) => {
+      
+    if (data.includes("pause")) {
+      video.pause();
+      speak("Paused");
+    } else if (data.includes("play")) {
+      video.play();
+      speak("Playing");
+    } else if (data.includes("next")) {
+      speak("Next item");
+    } else if (data.includes("previous")) {
+      speak("Previous item");
+    } else {
+      speak("Command not recognized");
+    }
+
+    });
 });
 
 
@@ -125,3 +146,7 @@ function setTheme(theme) {
   themeLink.href = theme === 'dark' ? 'dark.css' : 'light.css';
 }
 
+function speak(text) {
+  utterance = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(utterance);
+};

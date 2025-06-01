@@ -2,6 +2,10 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('node:path')
 const { next, prev, state, getPlaylistInfo, getItemPlaylist, getCurrentI, save, load } = require('./playlist.js');
 
+const { spawn, exec } = require('child_process');
+const fs = require('fs');
+const recorder = require('node-record-lpcm16'); // npm install node-record-lpcm16
+
 const SAVE_PATH = "./saves/playlist.json";
 
 const createWindow = () => {
@@ -102,6 +106,45 @@ ipcMain.on('open-load-dialog', async (event) => {
   } catch (err) {
     console.error("Error with dialog: ", err);
   }
+});
+
+ipcMain.on('start-speach', async (event) => {
+  const audioPath = 'speech.wav';
+  // Run SoX directly to record 5 seconds
+  const soxCmd = `sox -t waveaudio "Microphone Array" ${audioPath} trim 0 5`;
+
+  exec(soxCmd, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`SoX error: ${error.message}`);
+      event.sender.send('transcript', `SoX error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`SoX stderr: ${stderr}`);
+    }
+
+    const whisper = spawn('whisper', [audioPath, '--language', 'en', '--model', 'tiny', '--output_format', 'txt']);
+    whisper.on('close', (code) => {
+      fs.readFile('speech.txt', 'utf8', (err, data) => {
+        if (err) {
+          console.error('Whisper output read error:', err);
+          return;
+        }
+        const text = data.toLowerCase();
+        console.log("recognized: ", text);
+        if (text.includes('next')) {
+          event.sender.send('UpdatePlaying', next());
+          event.sender.send('UpdateCurrent', getCurrentI());
+        }
+        else if (text.includes('previous')) {
+          event.sender.send('UpdatePlaying', prev());
+          event.sender.send('UpdateCurrent', getCurrentI());
+        }
+        
+        event.sender.send('transcript', text);
+      });
+    });
+  });
 });
 
 
