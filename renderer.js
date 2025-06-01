@@ -1,4 +1,3 @@
-
 window.addEventListener('DOMContentLoaded', () => {
   const video = document.querySelector('video');
   const slider = document.querySelector("#myRange");
@@ -169,6 +168,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     });
+
+  const zvocniUkazi = document.getElementById('zvocni-ukazi');
+  if (zvocniUkazi) {
+    zvocniUkazi.addEventListener('click', () => {
+      zvocniUkazi.classList.add('rainbow-border');
+      setTimeout(() => {
+        zvocniUkazi.classList.remove('rainbow-border');
+      }, 4000);
+    });
+  }
 });
 
 
